@@ -60,7 +60,6 @@ def predictor_func(img_path):
     model = Model(inputs = model.inputs , outputs = model.layers[-2].output)
     
     # load the image from file
-    img_path = f"C:/Users/rjroh/Desktop/Summer Project - Image Caption Generator/{img_path}"
     image = load_img(img_path, target_size=(224, 224))
     # convert image pixels to numpy array
     image = img_to_array(image)
@@ -71,9 +70,9 @@ def predictor_func(img_path):
     # extract features
     features = model.predict(image, verbose=0)
     tokenizer = Tokenizer()
-    with open(os.path.join("C:/Users/rjroh/Desktop/Summer Project - Image Caption Generator/", 'tokenizer.pkl'), 'rb') as f:
+    with open("./tokenizer.pkl", 'rb') as f:
         tokenizer = pickle.load(f)
-    final_model = load_model("C:/Users/rjroh/Desktop/Summer Project - Image Caption Generator/best_model_final.h5",compile=False)
+    final_model = load_model("./best_model_final.h5",compile=False)
     
     y_pred = predict_caption(final_model, features, tokenizer, 35)
     return y_pred
