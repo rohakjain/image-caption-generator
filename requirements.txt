@@ -1,11 +1,5 @@
-PIL
-numpy
-pickle
-os
-streamlit
-tensorflow.keras.applications.vgg16
-tensorflow.keras.preprocessing.image
-tensorflow.keras.preprocessing.text
-tensorflow.keras.preprocessing.sequence
-tensorflow.keras.models
-tensorflow.keras.models
+numpy==1.25.0
+Pillow==9.4.0
+Pillow==10.0.0
+streamlit==1.24.0
+tensorflow==2.10.0
