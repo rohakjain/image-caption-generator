@@ -7,6 +7,7 @@ Created on Sun Jul  2 13:16:10 2023
 
 ###################    imports
 import PIL
+from PIL import Image
 import numpy as np
 import pickle
 import os
@@ -52,15 +53,11 @@ def predict_caption(model, image, tokenizer, max_length):
             break
     return in_text
 
-def predictor_func(img_path):
-
-    # Load vgg16 Model
-    model = VGG16()
-    # restructure model
-    model = Model(inputs = model.inputs , outputs = model.layers[-2].output)
+def predictor_func(uploaded_file):
     
     # load the image from file
-    image = load_img(img_path, target_size=(224, 224))
+    image = Image.open(uploaded_file)
+    image = image.resize((224,224))
     # convert image pixels to numpy array
     image = img_to_array(image)
     # reshape data for model
@@ -77,6 +74,10 @@ def predictor_func(img_path):
     y_pred = predict_caption(final_model, features, tokenizer, 35)
     return y_pred
 
+    # Load vgg16 Model
+model = VGG16()
+# restructure model
+model = Model(inputs = model.inputs , outputs = model.layers[-2].output)
 
 def main():
     
@@ -87,7 +88,7 @@ def main():
         st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
         caption = ''
         if st.button('Generate caption'):
-            caption=predictor_func(uploaded_file.name)
+            caption=predictor_func(uploaded_file)
         st.success(caption)
     
 if __name__ == "__main__":
