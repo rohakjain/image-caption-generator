@@ -53,7 +53,7 @@ def predict_caption(model, image, tokenizer, max_length):
             break
     return in_text
 
-def predictor_func(uploaded_file):
+def predictor_func(uploaded_file, model):
     
     # load the image from file
     image = Image.open(uploaded_file)
@@ -88,7 +88,7 @@ def main():
         st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
         caption = ''
         if st.button('Generate caption'):
-            caption=predictor_func(uploaded_file)
+            caption=predictor_func(uploaded_file, model)
         st.success(caption)
     
 if __name__ == "__main__":
