@@ -74,13 +74,13 @@ def predictor_func(uploaded_file):
     y_pred = predict_caption(final_model, features, tokenizer, 35)
     return y_pred
 
-    # Load vgg16 Model
-model = VGG16()
-# restructure model
-model = Model(inputs = model.inputs , outputs = model.layers[-2].output)
+
 
 def main():
-    
+    # Load vgg16 Model
+    model = VGG16()
+    # restructure model
+    model = Model(inputs = model.inputs , outputs = model.layers[-2].output)
     st.title("Image caption generator")
     
     uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
