@@ -3,3 +3,4 @@ Pillow==9.4.0
 streamlit
 tensorflow
 protobuf
+protoc
